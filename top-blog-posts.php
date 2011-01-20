@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: thatMLMbeat.com Top Blog Posts Voting Plugin
-Description: thatMLMbeat.com Top Blog Posts Voting Plugin
+Plugin Name: The Beat Top Blog Posts Voting Plugin
+Description: Free front page advertising for your top blog posts on <a href="http://thatmlmbeat.com/" target="_blank">thatMLMbeat</a>, exclusive to online home business entrepreneurs and MLM bloggers. The more 'beats' (votes) you get, the higher your post is ranked! <b>PLUS, adds all top posts into an RSS feed which is displayed in each plugin users Wordpress Dashboard!</b> Got questions? Ask away in <a href="http://thatmlmbeat.com/groups/the-beat-plugin/" target="_blank">the forum</a> and also visit our <a href="http://thatmlmbeat.com/category/thatmlmbeat/" target="_blank">MLM Blog</a>.
 Version: 1.2.1
 Author: George Fourie
 Author URI: http://thatmlmbeat.com/
