@@ -2,7 +2,7 @@
 /*
 Plugin Name: The Beat Top Blog Posts Voting Plugin
 Description: Front page exposure for your posts on thatMLMbeat.com ranked by votes (beats) & adds posts into RSS feed which displays in plugin users WP Dashboard!
-Version: 1.2.2
+Version: 1.2.3
 Author: George Fourie
 Author URI: http://thatmlmbeat.com/
 */ 
@@ -25,7 +25,16 @@ add_action( 'init', 'tbpv_get_post_content' );
 
 if( isset($_GET["tbpv_id"]) && isset($_GET["tbpv_username"]) && isset($_GET["tbpv_domain"]) && isset($_GET["tbpv_login"]) ){ ?>
 	<script type="text/javascript">
-		parent.show_login_form(<?php echo $_GET["tbpv_id"]; ?>, location.href, '<?php echo $_GET["tbpv_affiliate"]; ?>');
+		document.domain = '<?php echo $_GET["tbpv_domain"]; ?>';
+		function login_popup(){
+			location1 = location.href.split("?",1);
+			window.open("http://thatmlmbeat.com/wp-voting-login.php?redirect_to="+location1[0]+"&tbpv_affiliate=<?php echo $_GET["tbpv_affiliate"]; ?>","","menubar=0,resizable=1,status=1,toolbar=0,location=0");
+		}
+		try{
+			parent.show_login_form(<?php echo $_GET["tbpv_id"]; ?>, location.href, '<?php echo $_GET["tbpv_affiliate"]; ?>');
+		}catch(err){
+			login_popup();
+		}
 		location.href = '<?php echo WEBSITE_URL; ?>top_blog_posts.php?tbpv_id=<?php echo $_GET["tbpv_id"]; ?>&tbpv_username=<?php echo $_GET["tbpv_username"]; ?>&tbpv_domain=<?php echo $_GET["tbpv_domain"]; ?>&tbpv_affiliate=<?php echo urlencode($_GET["tbpv_affiliate"]); ?>';
 	</script>
 <?php
@@ -34,7 +43,11 @@ if( isset($_GET["tbpv_id"]) && isset($_GET["tbpv_username"]) && isset($_GET["tbp
 
 if(isset($_GET["tbpv_action"]) && $_GET["tbpv_action"] == "close_loginbox"){ ?>
 	<script type="text/javascript">
-		parent.jQuery.colorbox.close();
+		try{
+			parent.jQuery.colorbox.close();
+		}catch(err){
+			window.close();
+		}
 	</script>
 <?php
 	exit;
@@ -68,7 +81,7 @@ function top_blog_posts_admin(){
 	$thatmlmbeat_affiliate_link = get_option( "thatmlmbeat_affiliate_link" );
 	$thatmlmbeat_button_allignment = get_option( "thatmlmbeat_button_allignment" ); ?>
 	<div class="wrap">
-		<h2>thatMLMbeat.com - The Beat Plugin Settings</h2>
+		<h2>thatMLMbeat.com Top Blog Posts Voting Settings</h2>
 		<br />
 <?php if($settings_saved){ ?>
 		<div class="updated below-h2" id="message"><p>Settings saved.</p></div>
@@ -89,7 +102,7 @@ function top_blog_posts_admin(){
 					<td>thatMLMbeat Affiliate Referral Username:</td>
 					<td>
 						<input type="text" name="thatmlmbeat_affiliate_link" value="<?php echo $thatmlmbeat_affiliate_link; ?>" />
-						<div style="font-size:10px; color:#A5A5A5;">DO NOT enter your entire affiliate link like this here:<br /> http://thatmlmbeat.com/?ref=georgefourie-97<br />ONLY enter this part:"georgefourie-97"</div>
+						<div style="font-size:10px; color:#A5A5A5;">http://thatmlmbeat.com/?ref=georgefourie-97<br />here "georgefourie-97" is referral username</div>
 					</td>
 				</tr>
 				<tr>
@@ -120,7 +133,7 @@ function tbpv_enable_jquery(){
 	if (!is_admin()) {
 		wp_enqueue_script('jquery');
 		wp_enqueue_script( 'mlmbeat-voting-colorbox-js', WP_PLUGIN_URL .'/the-beat-top-blog-posts-voting-plugin/colorbox/jquery.colorbox-min.js' );
-		wp_enqueue_script( 'mlmbeat-voting-js', WP_PLUGIN_URL .'/the-beat-top-blog-posts-voting-plugin/general.js' );
+		wp_enqueue_script( 'mlmbeat-voting-js', WP_PLUGIN_URL .'/the-beat-top-blog-posts-voting-plugin/general.js?domain='.$_SERVER['HTTP_HOST'] );
 		wp_enqueue_style( 'mlmbeat-voting-colorbox-css', WP_PLUGIN_URL .'/the-beat-top-blog-posts-voting-plugin/colorbox/colorbox.css');
 	}
 }
