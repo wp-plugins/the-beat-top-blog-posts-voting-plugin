@@ -2,10 +2,10 @@
 /*
 Plugin Name: The Beat Top Blog Posts Voting Plugin
 Description: Front page exposure for your posts on thatMLMbeat.com ranked by votes (beats) & adds posts into RSS feed which displays in plugin users WP Dashboard!
-Version: 1.2.3
+Version: 1.2.4
 Author: George Fourie
 Author URI: http://thatmlmbeat.com/
-*/ 
+*/
 define("WEBSITE_URL","http://thatmlmbeat.com/");
 
 function tbpv_get_post_content(){
@@ -15,6 +15,17 @@ function tbpv_get_post_content(){
 			while ( have_posts() ){
 				include_once("wp-includes/pluggable.php");
 				the_post();
+				/*remove_all_filters( 'get_the_excerpt' );
+				remove_all_filters( 'wp_trim_excerpt' );
+				remove_all_filters( 'the_content' );
+				add_filter( 'get_the_excerpt', 'wp_trim_excerpt'  );*/
+				remove_filter( 'get_the_excerpt', 'dd_exclude_js_trim_excerpt' );
+				remove_filter( 'get_the_excerpt', 'addthis_late_widget', 14 );
+				remove_filter( 'get_the_excerpt', 'addthis_display_social_widget_excerpt' );
+				remove_filter( 'wp_trim_excerpt', 'addthis_remove_tag', 11, 2 );
+				remove_filter( 'the_content', 'addthis_script_to_content' );
+				remove_filter( 'the_content', 'addthis_display_social_widget', 15 );
+				remove_filter( 'the_title', 'at_title_check' );
 				echo serialize( array( "title"=>the_title_attribute(array("echo"=>0)), "content"=>get_the_excerpt(), "permalink"=>get_permalink(), "time"=>strtotime(get_the_time("Y-m-d")) ) );
 			}
 		}
