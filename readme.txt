@@ -11,8 +11,8 @@ Contributors: thatmlmbeat\
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M8LL9D34ARYVJ\
 Tags: mlm blog, mlm blogger, mlm, network marketing blogs, blog marketing\
 Requires at least: 3.0\
-Tested up to: 3.1\
-Stable tag: 1.2.1\
+Tested up to: 3.2.1\
+Stable tag: 1.2.6\
 \
 Front page exposure for your posts on thatMLMbeat.com ranked by votes (beats) & adds posts into RSS feed which displays in plugin users WP Dashboard!\
 \
@@ -46,7 +46,7 @@ Here are 3 possible scenarios that may happen when your blog visitors click on '
 \
 This section describes how to install the plugin and get it working.\
 \
-IMPORTANT: You will need to setup a social profile at http://thatMLMbeat.com/register for this plugin to work as well as add your existing blog as an external blog to the community. This video will show you how: http://help.thatmlmbeat.com/how-to-add-your-external-personal-blog-to-grab-our-traffic/ \
+IMPORTANT: You will need to setup a social profile at http://thatMLMbeat.com/join for this plugin to work as well as add your existing blog as an external blog to the community. This video will show you how: http://help.thatmlmbeat.com/how-to-add-your-external-personal-blog-to-grab-our-traffic/ \
 \
 1. Upload `mlmbeat-topblogposts.zip` to the `/wp-content/plugins/` directory\
 2. Activate the plugin through the 'Plugins' menu in WordPress\
@@ -74,6 +74,13 @@ none\
 \
 == Changelog ==\
 \
+= 1.2.6 =\
+* added more compatibility with the Digg Digg plugin\
+\
+= 1.2.2 - 1.2.5 =\
+* various edits and bug fixes\
+\
+
 = 1.2.1 =\
 * first release\
 \
