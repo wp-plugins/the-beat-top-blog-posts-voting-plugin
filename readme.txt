@@ -12,7 +12,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: mlm blog, mlm blogger, mlm, network marketing blogs, blog marketing\
 Requires at least: 3.0\
 Tested up to: 3.2.1\
-Stable tag: 1.2.6\
+Stable tag: 1.2.7\
 \
 Front page exposure for your posts on thatMLMbeat.com ranked by votes (beats) & adds posts into RSS feed which displays in plugin users WP Dashboard!\
 \
@@ -73,6 +73,9 @@ You most probably added the entire URL, e.g. '
 none\
 \
 == Changelog ==\
+\
+= 1.2.7 =\
+* quick fix for 1.2.6 that didn't upload properly\
 \
 = 1.2.6 =\
 * added more compatibility with the Digg Digg plugin\
