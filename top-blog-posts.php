@@ -118,7 +118,7 @@ function top_blog_posts_admin(){
 	$thatmlmbeat_affiliate_link = get_option( "thatmlmbeat_affiliate_link" );
 	$thatmlmbeat_button_allignment = get_option( "thatmlmbeat_button_allignment" ); ?>
 	<div class="wrap">
-		<h2>thatMLMbeat Top Posts Voting Settings</h2>
+		<h2>thatMLMbeat.com Top Blog Posts Voting Settings</h2>
 		<br />
 <?php if($settings_saved){ ?>
 		<div class="updated below-h2" id="message"><p>Settings saved.</p></div>
