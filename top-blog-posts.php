@@ -2,7 +2,7 @@
 /*
 Plugin Name: The Beat Top Blog Posts Voting Plugin
 Description: Front page exposure for your posts on thatMLMbeat.com ranked by votes (beats) & adds posts into RSS feed which displays in plugin users WP Dashboard!
-Version: 1.2.7
+Version: 1.2.7.1
 Author: George Fourie
 Author URI: http://thatmlmbeat.com/
 */
@@ -247,4 +247,3 @@ function tbpv_add_dashboard_widgets() {
 }
 add_action('wp_dashboard_setup', 'tbpv_add_dashboard_widgets' );
 ?>
-
