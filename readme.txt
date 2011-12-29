@@ -1,7 +1,7 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf350
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
 {\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fnil\fcharset0 LucidaGrande;\f2\froman\fcharset0 Times-Roman;
 }
-{\colortbl;\red255\green255\blue255;\red255\green255\blue255;\red148\green148\blue148;}
+{\colortbl;\red255\green255\blue255;\red148\green148\blue148;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww22180\viewh17280\viewkind0
 \deftab720
 \pard\pardeftab720\ql\qnatural
@@ -11,8 +11,8 @@ Contributors: thatmlmbeat\
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=M8LL9D34ARYVJ\
 Tags: mlm blog, mlm blogger, mlm, network marketing blogs, blog marketing\
 Requires at least: 3.0\
-Tested up to: 3.2.1\
-Stable tag: 1.2.7\
+Tested up to: 3.3\
+Stable tag: 2.0\
 \
 Front page exposure for your posts on thatMLMbeat.com ranked by votes (beats) & adds posts into RSS feed which displays in plugin users WP Dashboard!\
 \
@@ -46,7 +46,7 @@ Here are 3 possible scenarios that may happen when your blog visitors click on '
 \
 This section describes how to install the plugin and get it working.\
 \
-IMPORTANT: You will need to setup a social profile at http://thatMLMbeat.com/join for this plugin to work as well as add your existing blog as an external blog to the community. This video will show you how: http://help.thatmlmbeat.com/how-to-add-your-external-personal-blog-to-grab-our-traffic/ \
+IMPORTANT: You will need to setup a social profile at http://thatMLMbeat.com/register for this plugin to work as well as add your existing blog as an external blog to the community. This video will show you how: http://help.thatmlmbeat.com/how-to-add-your-external-personal-blog-to-grab-our-traffic/ \
 \
 1. Upload `mlmbeat-topblogposts.zip` to the `/wp-content/plugins/` directory\
 2. Activate the plugin through the 'Plugins' menu in WordPress\
@@ -63,8 +63,8 @@ Your blog is not added to thatMLMbeat.com as a 'external blog' or you haven't co
 = I get an error on the affiliate string  that I have added =\
 \
 You most probably added the entire URL, e.g. '
-\f1\fs22 \cb2 http://thatmlmbeat.com/?ref=georgefourie-97' instead of just 'georgefourie-97'
-\f2\fs20 \cf3 \cb1 \
+\f1\fs22 http://thatmlmbeat.com/?ref=georgefourie-97' instead of just 'georgefourie-97'
+\f2\fs20 \cf2 \
 
 \f0\fs24 \cf0 \
 \
@@ -73,6 +73,9 @@ You most probably added the entire URL, e.g. '
 none\
 \
 == Changelog ==\
+\
+= 2.0 =\
+* added javascript option so that button can be positioned anywhere on a Wordpress blog post. Redesigned the beat button and added an additional button \
 \
 = 1.2.7 =\
 * quick fix for 1.2.6 that didn't upload properly\
@@ -83,7 +86,6 @@ none\
 = 1.2.2 - 1.2.5 =\
 * various edits and bug fixes\
 \
-
 = 1.2.1 =\
 * first release\
 \

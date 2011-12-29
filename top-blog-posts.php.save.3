@@ -1,8 +1,8 @@
-<?php
+<php
 /*
 Plugin Name: The Beat Top Blog Posts Voting Plugin
 Description: Front page exposure for your posts on thatMLMbeat.com ranked by votes (beats) & adds posts into RSS feed which displays in plugin users WP Dashboard!
-Version: 2.0
+Version: 1.2.4
 Author: George Fourie
 Author URI: http://thatmlmbeat.com/
 */
@@ -11,47 +11,21 @@ define("WEBSITE_URL","http://thatmlmbeat.com/");
 function tbpv_get_post_content(){
 	if(isset($_POST["thatmlmbeat_get_voting_post"])){
 		query_posts(array( 'p' => $_POST["thatmlmbeat_get_voting_post"] ));
-		if(class_exists('SubscribersMagnetPlugin')){
-			global $SubscribersMagnetPlugin;
-			remove_action('loop_start', array(&$SubscribersMagnetPlugin, 'sbmgOFATFP'));
-			remove_action('loop_end', array(&$SubscribersMagnetPlugin, 'sbmgOFABLP'));
-			remove_filter('the_content', array(&$SubscribersMagnetPlugin, 'sbmgOFAWithinPost'));
-		}
 		if ( have_posts() ){
 			while ( have_posts() ){
 				include_once("wp-includes/pluggable.php");
 				the_post();
-				function excerpt_more_beat($excerpt_more){
-					return " ...";
-				}
 				/*remove_all_filters( 'get_the_excerpt' );
 				remove_all_filters( 'wp_trim_excerpt' );
 				remove_all_filters( 'the_content' );
 				add_filter( 'get_the_excerpt', 'wp_trim_excerpt'  );*/
-				
-				/*remove_filter( 'get_the_excerpt', 'dd_exclude_js_trim_excerpt' );
+				remove_filter( 'get_the_excerpt', 'dd_exclude_js_trim_excerpt' );
 				remove_filter( 'get_the_excerpt', 'addthis_late_widget', 14 );
 				remove_filter( 'get_the_excerpt', 'addthis_display_social_widget_excerpt' );
 				remove_filter( 'wp_trim_excerpt', 'addthis_remove_tag', 11, 2 );
 				remove_filter( 'the_content', 'addthis_script_to_content' );
-				remove_filter( 'the_content', 'addthis_display_social_widget', 15 );*/
-				
-				remove_all_filters( 'get_the_excerpt' );
-				remove_all_filters( 'the_content' );
-				remove_all_filters( 'wp_trim_excerpt' );
-				remove_all_filters( 'excerpt_length' );
-				remove_all_filters( 'excerpt_more' );
+				remove_filter( 'the_content', 'addthis_display_social_widget', 15 );
 				remove_filter( 'the_title', 'at_title_check' );
-				
-				add_filter( 'get_the_excerpt', 'wp_trim_excerpt'  );
-				add_filter( 'the_content', 'capital_P_dangit', 11 );
-				add_filter( 'the_content', 'wptexturize'        );
-				add_filter( 'the_content', 'convert_smilies'    );
-				add_filter( 'the_content', 'convert_chars'      );
-				add_filter( 'the_content', 'wpautop'            );
-				add_filter( 'the_content', 'shortcode_unautop'  );
-				add_filter( 'the_content', 'prepend_attachment' );
-				add_filter( 'excerpt_more', 'excerpt_more_beat' );
 				echo serialize( array( "title"=>the_title_attribute(array("echo"=>0)), "content"=>get_the_excerpt(), "permalink"=>get_permalink(), "time"=>strtotime(get_the_time("Y-m-d")) ) );
 			}
 		}
@@ -59,48 +33,6 @@ function tbpv_get_post_content(){
 	}
 }
 add_action( 'init', 'tbpv_get_post_content' );
-
-function tbpv_display_iframe(){
-	if(isset($_POST['tbpv_javascript']) && $_POST['tbpv_javascript'] == 'display_beat_button'){
-		if( is_single() ){
-			global $posts;
-			if(count($posts) == 1){
-				$thatmlmbeat_username = get_option( "thatmlmbeat_username" );
-				$thatmlmbeat_affiliate_link = get_option( "thatmlmbeat_affiliate_link" );
-				$thatmlmbeat_button_style = get_option( "thatmlmbeat_button_style" );
-				$thatmlmbeat_button_style = '1';
-				if($thatmlmbeat_button_style == '2'){
-					$width = 93;
-					$height = 23;
-				}
-				else{
-					$width = 60;
-					$height = 68;
-				}
-				$beat_post_id = $posts[0]->ID;
-				if( !empty($thatmlmbeat_username) && $beat_post_id!="" ){
-					$html = '';
-					$html = '<iframe id="mlmbeat_tbpv" src="'.WEBSITE_URL.'top_blog_posts.php?tbpv_id='.$beat_post_id.'&tbpv_username='.$thatmlmbeat_username.'&tbpv_domain='.$_SERVER['HTTP_HOST'].'&tbpv_button_style='.$thatmlmbeat_button_style;
-					if(!empty($thatmlmbeat_affiliate_link))
-						$html .= '&tbpv_affiliate='.urlencode($thatmlmbeat_affiliate_link).'&ref='.urlencode($thatmlmbeat_affiliate_link);
-					$html .= '" frameborder="0" width="'.$width.'" height="'.$height.'" scrolling="no"></iframe>';
-					echo $html;
-				}
-				else{
-					echo "no_display";
-				}
-			}
-			else{
-				echo "no_display";
-			}
-		}
-		else{
-			echo "no_display";
-		}
-		exit;
-	}
-}
-add_action( 'template_redirect', 'tbpv_display_iframe', 1 );
 
 if( isset($_GET["tbpv_id"]) && isset($_GET["tbpv_username"]) && isset($_GET["tbpv_domain"]) && isset($_GET["tbpv_login"]) ){ ?>
 	<script type="text/javascript">
@@ -114,7 +46,7 @@ if( isset($_GET["tbpv_id"]) && isset($_GET["tbpv_username"]) && isset($_GET["tbp
 		}catch(err){
 			login_popup();
 		}
-		location.href = '<?php echo WEBSITE_URL; ?>top_blog_posts.php?tbpv_id=<?php echo $_GET["tbpv_id"]; ?>&tbpv_username=<?php echo $_GET["tbpv_username"]; ?>&tbpv_domain=<?php echo $_GET["tbpv_domain"]; ?>&tbpv_affiliate=<?php echo urlencode($_GET["tbpv_affiliate"]); ?>&tbpv_button_style=<?php echo urlencode($_GET["tbpv_button_style"]); ?>';
+		location.href = '<?php echo WEBSITE_URL; ?>top_blog_posts.php?tbpv_id=<?php echo $_GET["tbpv_id"]; ?>&tbpv_username=<?php echo $_GET["tbpv_username"]; ?>&tbpv_domain=<?php echo $_GET["tbpv_domain"]; ?>&tbpv_affiliate=<?php echo urlencode($_GET["tbpv_affiliate"]); ?>';
 	</script>
 <?php
 	exit;
@@ -156,24 +88,9 @@ function top_blog_posts_admin(){
 		update_option( "thatmlmbeat_button_allignment", $_POST["thatmlmbeat_button_allignment"] );
 		$settings_saved = true;
 	}
-	if( $_POST && isset($_POST["thatmlmbeat_button_style"]) ){
-		update_option( "thatmlmbeat_button_style", $_POST["thatmlmbeat_button_style"] );
-		$settings_saved = true;
-	}
-	if( $_POST && isset($_POST["thatmlmbeat_disable_button"]) ){
-		update_option( "thatmlmbeat_disable_button", $_POST["thatmlmbeat_disable_button"] );
-		$settings_saved = true;
-	}
-	else if($_POST){
-		update_option( "thatmlmbeat_disable_button", "" );
-		$settings_saved = true;
-	}
-	
 	$thatmlmbeat_username = get_option( "thatmlmbeat_username" );
 	$thatmlmbeat_affiliate_link = get_option( "thatmlmbeat_affiliate_link" );
-	$thatmlmbeat_button_allignment = get_option( "thatmlmbeat_button_allignment" );
-	$thatmlmbeat_button_style = get_option( "thatmlmbeat_button_style" );
-	$thatmlmbeat_disable_button = get_option( "thatmlmbeat_disable_button" ); ?>
+	$thatmlmbeat_button_allignment = get_option( "thatmlmbeat_button_allignment" ); ?>
 	<div class="wrap">
 		<h2>thatMLMbeat.com Top Blog Posts Voting Settings</h2>
 		<br />
@@ -211,23 +128,6 @@ function top_blog_posts_admin(){
 					</td>
 				</tr>
 				<tr>
-					<td>Button style:</td>
-					<td>
-						<div><input type="radio" name="thatmlmbeat_button_style" value="1"<?php if($thatmlmbeat_button_style == '1' || empty($thatmlmbeat_button_style)){ ?> checked="checked"<?php } ?> style="vertical-align:top; margin-top:26px;" /> <img src="<?php echo network_home_url('/wp-content/plugins/the-beat-top-blog-posts-voting-plugin/beat-1.jpg'); ?>" /></div>
-						<div><input type="radio" name="thatmlmbeat_button_style" value="2"<?php if($thatmlmbeat_button_style == '2'){ ?> checked="checked"<?php } ?> style="vertical-align:top; margin-top:3px;" /> <img src="<?php echo network_home_url('/wp-content/plugins/the-beat-top-blog-posts-voting-plugin/beat-2.jpg'); ?>" /></div>
-					</td>
-				</tr>
-				<tr>
-					<td>Disable automatic display of beat button with post</td>
-					<td><input type="checkbox" name="thatmlmbeat_disable_button" value="disable"<?php if($thatmlmbeat_disable_button == 'disable'){ ?> checked="checked"<?php } ?> /></td>
-				</tr>
-				<!--<tr>
-					<td>Manual placement code for Beat box</td>
-					<td>
-						<div><textarea style="width:400px; height:100px;"><div id="div_beat_button"><script type="text/javascript">jQuery.post(location.href,{tbpv_javascript:'display_beat_button'},function(response){if(response!='no_display'){jQuery('#div_beat_button').html(response);}});</script></div></textarea></div>
-					</td>
-				</tr>-->
-				<tr>
 					<td></td>
 					<td><input type="submit" value="Save" /></td>
 				</tr>
@@ -264,30 +164,15 @@ function tbpv_the_content_filter($content){
 	$thatmlmbeat_username = get_option( "thatmlmbeat_username" );
 	$thatmlmbeat_affiliate_link = get_option( "thatmlmbeat_affiliate_link" );
 	$thatmlmbeat_button_allignment = get_option( "thatmlmbeat_button_allignment" );
-	$thatmlmbeat_button_style = get_option( "thatmlmbeat_button_style" );
-	$thatmlmbeat_disable_button = get_option( "thatmlmbeat_disable_button" );
-	if($thatmlmbeat_disable_button == 'disable' && is_single()){
-		return $content;
-	}
 	if($thatmlmbeat_button_allignment=="")
 		$thatmlmbeat_button_allignment = "left";
-	if(empty($thatmlmbeat_button_style))
-		$thatmlmbeat_button_style = '1';
-	if($thatmlmbeat_button_style == '2'){
-		$width = 93;
-		$height = 23;
-	}
-	else{
-		$width = 60;
-		$height = 68;
-	}
 	if( !empty($thatmlmbeat_username) && get_the_ID()!="" ){
 		$tbpv_but_dis[] = get_the_ID();
 		$html = '';
-		$html = '<div style="float:'.$thatmlmbeat_button_allignment.'; height:'.$height.'px;"><iframe id="mlmbeat_tbpv" src="'.WEBSITE_URL.'top_blog_posts.php?tbpv_id='.get_the_ID().'&tbpv_username='.$thatmlmbeat_username.'&tbpv_domain='.$_SERVER['HTTP_HOST'].'&tbpv_button_style='.$thatmlmbeat_button_style;
+		$html = '<div style="float:'.$thatmlmbeat_button_allignment.';"><iframe id="mlmbeat_tbpv" src="'.WEBSITE_URL.'top_blog_posts.php?tbpv_id='.get_the_ID().'&tbpv_username='.$thatmlmbeat_username.'&tbpv_domain='.$_SERVER['HTTP_HOST'];
 		if(!empty($thatmlmbeat_affiliate_link))
 			$html .= '&tbpv_affiliate='.urlencode($thatmlmbeat_affiliate_link).'&ref='.urlencode($thatmlmbeat_affiliate_link);
-		$html .= '" frameborder="0" width="'.$width.'" height="'.$height.'" scrolling="no"></iframe></div>';
+		$html .= '" frameborder="0" width="58" height="64" scrolling="no"></iframe></div>';
 		/*echo '<script type="text/javascript">var tbpv_siteurl = "'.WEBSITE_URL.'";</script>';*/
 	}
 	return $html.$content;
