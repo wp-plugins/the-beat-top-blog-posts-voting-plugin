@@ -2,7 +2,7 @@
 /*
 Plugin Name: The Beat Top Blog Posts Voting Plugin
 Description: Front page exposure for your posts on thatMLMbeat.com ranked by votes (beats) & adds posts into RSS feed which displays in plugin users WP Dashboard!
-Version: 2.0
+Version: 2.0.1
 Author: George Fourie
 Author URI: http://thatmlmbeat.com/
 */
@@ -200,7 +200,7 @@ function top_blog_posts_admin(){
 					</td>
 				</tr>
 				<tr>
-					<td>Button alignemnt:</td>
+					<td>Button allignemnt:</td>
 					<td>
 						<select name="thatmlmbeat_button_allignment" id="thatmlmbeat_button_allignment" style="width:70px;"><option value="left">Left</option><option value="right">Right</option></select>
 		<?php if($thatmlmbeat_button_allignment!=""){ ?>
@@ -220,6 +220,10 @@ function top_blog_posts_admin(){
 				<tr>
 					<td>Disable automatic display of beat button with post</td>
 					<td><input type="checkbox" name="thatmlmbeat_disable_button" value="disable"<?php if($thatmlmbeat_disable_button == 'disable'){ ?> checked="checked"<?php } ?> /></td>
+				</tr>
+				<tr>
+					<td>Javascript code for beat button</td>
+					<td><textarea style="width:500px; height:80px;"><div id="div_beat_button"><script type="text/javascript">jQuery.post(location.href,{tbpv_javascript:'display_beat_button'},function(response){if(response!='no_display' && response.substr(0, 20) == '<iframe id="mlmbeat_'){jQuery('#div_beat_button').html(response);}});</script></div></textarea></td>
 				</tr>
 				<!--<tr>
 					<td>Manual placement code for Beat box</td>

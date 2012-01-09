@@ -12,7 +12,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: mlm blog, mlm blogger, mlm, network marketing blogs, blog marketing\
 Requires at least: 3.0\
 Tested up to: 3.3\
-Stable tag: 2.0\
+Stable tag: 2.0.2\
 \
 Front page exposure for your posts on thatMLMbeat.com ranked by votes (beats) & adds posts into RSS feed which displays in plugin users WP Dashboard!\
 \
@@ -73,6 +73,9 @@ You most probably added the entire URL, e.g. '
 none\
 \
 == Changelog ==\
+\
+= 2.0.2 =\
+* added javascript code in the plugin settings so that it can be copied directly \
 \
 = 2.0 =\
 * added javascript option so that button can be positioned anywhere on a Wordpress blog post. Redesigned the beat button and added an additional button \
