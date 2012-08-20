@@ -14,7 +14,7 @@ Requires at least: 3.0\
 Tested up to: 3.3\
 Stable tag: 2.0.2\
 \
-Front page exposure for your posts on thatMLMbeat.com ranked by votes (beats) & adds posts into RSS feed which displays in plugin users WP Dashboard!\
+This plugin's features have been combined with the MLM Social Buzz plugin at http://wordpress.org/extend/plugins/mlm-social-buzz/ which should now be used instead. \
 \
 == Description ==\
 \
