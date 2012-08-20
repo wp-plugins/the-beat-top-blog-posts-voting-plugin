@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: The Beat Top Blog Posts Voting Plugin
-Description: This plugin's features have been combined with the <a href="http://wordpress.org/extend/plugins/mlm-social-buzz/">MLM Social Buzz</a> plugin which should now be used instead. 
+Description: This plugin's features have been combined with the <a href="http://wordpress.org/extend/plugins/mlm-social-buzz/">MLM Social Buzz</a> plugin which has replaced this plugin.The Beat Top Blog Posts will no longer get updated. 
 Version: 2.0.2
 Author: George Fourie
 Author URI: http://thatmlmbeat.com/
